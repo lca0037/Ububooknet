@@ -52,7 +52,6 @@
 		var validNavigation = false;
 
 		function endSession() {
-		  	console.log('Holiwi')
 			$.ajax({
 		      type: "POST",
 		      contentType: "application/json;charset=utf-8",
@@ -72,8 +71,6 @@
 		  * check http://msdn.microsoft.com/en-us/library/ms536907(VS.85).aspx
 		  */
 		  window.onbeforeunload = function(event) {
-		  	//console.log(event)
-		  	console.log('before',validNavigation)
 		      if (!validNavigation) {
 		         endSession();
 		      }
@@ -81,9 +78,7 @@
 		 
 		  // Attach the event keypress to exclude the F5 refresh
 		  $(document).bind('keydown', function(e) {
-		  	alert('HOLA')
 		    if (e.keyCode == 116){
-		    	alert('Soy un F5')
 		      validNavigation = true;
 		    }
 		  });
