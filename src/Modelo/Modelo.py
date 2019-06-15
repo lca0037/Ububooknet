@@ -555,10 +555,7 @@ class Modelo:
             Distribucion de grado sin el peso
         """
         degree_sequence = sorted([d for n, d in self.__G.degree()], reverse=True)  # degree sequence
-        # print "Degree sequence", degree_sequence
-        print(degree_sequence)
         degreeCount = collections.Counter(degree_sequence)
-        print(degreeCount)
         return degreeCount
     
     def dCon(self):
