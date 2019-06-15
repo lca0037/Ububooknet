@@ -10,8 +10,8 @@ function idioma(nuevo,actual){
             dataType: "json",
             success: function(response){
                   validNavigation = true
+                  location.reload()
             }
           });
-      	location.reload()
       }
 }

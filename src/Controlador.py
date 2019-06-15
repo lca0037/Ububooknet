@@ -262,7 +262,7 @@ def idioma():
     if request.method == "POST":
         ajax = request.get_json()
         session['lang'] = ajax
-        return ajax
+        return "true"
     
 @app.route('/Guardar-Config/', methods=["GET", "POST"])
 def guardarConfig():
