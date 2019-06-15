@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="{{ _('es') }}">
+<head>
+	<title>Ububooknet</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+	<header id="header">
+		<div class="logo">
+			<h1>Ububooknet</h1>
+		</div>
+		<div class="region"> 
+			<h2>{{ _('Visualización Informe') }}</h2>
+		</div>
+		<div class="menu">
+			<ul>
+				<li><a href="{{ url_for('index') }}">{{ _('Inicio') }}</a></li>
+				<li><a href="https://github.com/lca0037/GII18.0U-Ububooknet">{{ _('Repositorio') }}</a></li>
+			</ul>
+		</div>
+		<div class="banderas">
+			<img src="{{ url_for('static', filename='img/esp.png') }}" id="esp" onclick="idioma('es','{{ g.locale }}')">
+			<img src="{{ url_for('static', filename='img/uk.png') }}" id="uk" onclick="idioma('en','{{ g.locale }}')">
+		</div>
+	</header>
+	<div id="workflow">
+		<div class="txt-work">
+			<a href="{{ url_for('index') }}">{{ _('CARGAR EPUB') }}</a> > <a href="{{ url_for('dictaut') }}">{{ _('DICCIONARIO de PERSONAJES') }}</a> > <a href="{{ url_for('moddict') }}">{{ _('MODIFICAR DICCIONARIO') }}</a> > <a href="{{ url_for('params') }}">{{ _('PARÁMETROS ADICIONALES') }}</a> > <a href="{{ url_for('red') }}">{{ _('RED') }}</a> > <a href="{{ url_for('informe') }}">{{ _('INFORME') }}</a> > {{ _('VISUALIZACION INFORME') }}
+		</div>
+	</div>
+	<div id="content">
+		<div id="indice">
+			<div id="form-mov">
+				<input type="button" name="btn btn-volver" onclick="window.location.href='{{ url_for('informe') }}'" value="{{ _('Volver') }}">
+			</div>
+		</div>
+		<div id="forms">
+			{% if "cbx cbx-nnod" in informe.keys() %}
+				<p>{{_('Número Nodos')}}: {{informe["cbx cbx-nnod"]}}</p><br/>
+			{% endif %}
+			{% if "cbx cbx-nenl" in informe.keys() %}
+				<p>{{_('Número Enlaces')}}: {{informe["cbx cbx-nenl"]}}</p><br/>
+			{% endif %}
+			{% if "cbx cbx-nint" in informe.keys() %}
+				<p>{{_('Número Interacciones')}}: {{informe["cbx cbx-nint"]}}</p><br/>
+			{% endif %}
+			{% if "cbx cbx-gradosin" in informe.keys() %}
+				<p>{{_('Grado Nodos Sin Peso')}}: </p>
+				{% for x in informe["cbx cbx-gradosin"] %}
+					<p>{{x[0]}}: {{x[1]}}</p>
+				{% endfor %}
+				<br/>
+			{% endif %}
+			{% if "cbx cbx-gradocon" in informe.keys() %}
+				<p>{{_('Grado Nodos Con Peso')}}: </p>
+				{% for x in informe["cbx cbx-gradocon"] %}
+					<p>{{x[0]}}: {{x[1]}}</p>
+				{% endfor %}
+				<br/>
+			{% endif %}
+			{% if "cbx cbx-distsin" in informe.keys() %}
+				<p>{{_('Distribución Grado Sin Peso')}}: </p>
+				{% for x in informe["cbx cbx-distsin"].keys() %}
+					<p>{{_('Grado')}}: {{x}}, {{_('Num Nodos con este Grado')}}: {{informe["cbx cbx-distsin"][x]}}</p>
+				{% endfor %}
+				<br/>
+			{% endif %}
+			{% if "cbx cbx-distcon" in informe.keys() %}
+				<p>{{_('Distribución Grado Con Peso')}}: </p>
+				{% for x in informe["cbx cbx-distcon"].keys() %}
+					<p>{{_('Grado')}}: {{x}}, {{_('Num Nodos con este Grado')}}: {{informe["cbx cbx-distcon"][x]}}</p>
+				{% endfor %}
+				<br/>
+			{% endif %}
+			{% if "cbx cbx-dens" in informe.keys() %}
+				<p>{{_('Densidad')}}: {{informe["cbx cbx-dens"]}}</p><br/>
+			{% endif %}
+			{% if "cbx cbx-concomp" in informe.keys() %}
+				<p>{{_('Componentes Conectados')}}: </p>
+				{% for x in informe["cbx cbx-concomp"] %}
+					<p>
+						{% for i in x %}
+							{{ i }}, 
+						{% endfor %}
+					</p>
+				{% endfor %}
+				<br/>
+			{% endif %}
+			{% if "cbx cbx-exc" in informe.keys() %}
+				<p>{{_('Excentricidad')}}: </p>
+				{% for x in informe["cbx cbx-exc"].keys() %}
+					<p>{{ x }}: {{ informe["cbx cbx-exc"][x] }}</p>
+				{% endfor %}
+				<br/>
+			{% endif %}
+			{% if "cbx cbx-dia" in informe.keys() %}
+				<p>{{_('Diametro')}}: {{informe["cbx cbx-dia"]}}</p><br/>
+			{% endif %}
+			{% if "cbx cbx-rad" in informe.keys() %}
+				<p>{{_('Radio')}}: {{informe["cbx cbx-rad"]}}</p><br/>
+			{% endif %}
+			{% if "cbx cbx-longmed" in informe.keys() %}
+				<p>{{_('Distancia Media')}}: {{informe["cbx cbx-longmed"]}}</p><br/>
+			{% endif %}
+			{% if "cbx cbx-locclust" in informe.keys() %}
+				<p>{{_('Clustering Local')}}: </p>
+				{% for x in informe["cbx cbx-locclust"].keys() %}
+					<p>{{ x }}: {{ informe["cbx cbx-locclust"][x] }}</p>
+				{% endfor %}
+				<br/>
+			{% endif %}
+			{% if "cbx cbx-clust" in informe.keys() %}
+				<p>{{_('Clustering Global')}}: {{informe["cbx cbx-clust"]}}</p><br/>
+			{% endif %}
+			{% if "cbx cbx-trans" in informe.keys() %}
+				<p>{{_('Transitividad')}}: {{informe["cbx cbx-trans"]}}</p><br/>
+			{% endif %}
+			{% if "cbx cbx-centg" in informe.keys() %}
+				<p>{{_('Centralidad Grado')}}: </p>
+				{% for x in informe["cbx cbx-centg"].keys() %}
+					<p>{{ x }}: {{ informe["cbx cbx-centg"][x] }}</p>
+				{% endfor %}
+				<br/>
+			{% endif %}
+			{% if "cbx cbx-centc" in informe.keys() %}
+				<p>{{_('Centralidad Cercanía')}}: </p>
+				{% for x in informe["cbx cbx-centc"].keys() %}
+					<p>{{ x }}: {{ informe["cbx cbx-centc"][x] }}</p>
+				{% endfor %}
+				<br/>
+			{% endif %}
+			{% if "cbx cbx-centi" in informe.keys() %}
+				<p>{{_('Centralidad Intermediación')}}: </p>
+				{% for x in informe["cbx cbx-centi"].keys() %}
+					<p>{{ x }}: {{ informe["cbx cbx-centi"][x] }}</p>
+				{% endfor %}
+				<br/>
+			{% endif %}
+			{% if "cbx cbx-ranwal" in informe.keys() %}
+				<p>{{_('Centralidad Intermediación Camino Aleatorio')}}: </p>
+				{% for x in informe["cbx cbx-ranwal"].keys() %}
+					<p>{{ x }}: {{ informe["cbx cbx-ranwal"][x] }}</p>
+				{% endfor %}
+				<br/>
+			{% endif %}
+			{% if "cbx cbx-centv" in informe.keys() %}
+				<p>{{_('Centralidad Valor Propio')}}: </p>
+				{% for x in informe["cbx cbx-centv"].keys() %}
+					<p>{{ x }}: {{ informe["cbx cbx-centv"][x] }}</p>
+				{% endfor %}
+				<br/>
+			{% endif %}
+			{% if "cbx cbx-para" in informe.keys() %}
+				<p>{{_('Pagerank')}}: </p>
+				{% for x in informe["cbx cbx-para"].keys() %}
+					<p>{{ x }}: {{ informe["cbx cbx-para"][x] }}</p>
+				{% endfor %}
+				<br/>
+			{% endif %}
+			{% if "cbx cbx-kcliperc" in informe.keys() %}
+				<p>{{_('Comunidades K-clique')}}: </p>
+				{% for x in informe["cbx cbx-kcliperc"] %}
+					<p>
+						{% for i in x %}
+							{{ i }}, 
+						{% endfor %}
+					</p>
+				{% endfor %}
+				<br/>
+			{% endif %}
+			{% if "cbx cbx-girnew" in informe.keys() %}
+				<p>{{_('Comunidades Girvan-Newman')}}: </p>
+				{% for x in informe["cbx cbx-girnew"] %}
+					<p>
+						{% for i in x %}
+							{{ i }}, 
+						{% endfor %}
+					</p>
+				{% endfor %}
+				<br/>
+			{% endif %}
+			{% if "cbx cbx-roles" in informe.keys() %}
+				<p>{{_('Hubs Provinciales')}}: </p>
+				{% for x in informe["cbx cbx-roles"]['hubp'] %}
+					<p>
+						{{x}}
+					</p>
+				{% endfor %}
+				<p>{{_('Hubs Conectores')}}: </p>
+				{% for x in informe["cbx cbx-roles"]['hubc'] %}
+					<p>
+						{{x}}
+					</p>
+				{% endfor %}
+				<p>{{_('Hubs Kinless')}}: </p>
+				{% for x in informe["cbx cbx-roles"]['hubk'] %}
+					<p>
+						{{x}}
+					</p>
+				{% endfor %}
+				<p>{{_('No Hubs Ultra Periféricos')}}: </p>
+				{% for x in informe["cbx cbx-roles"]['nhubu'] %}
+					<p>
+						{{x}}
+					</p>
+				{% endfor %}
+				<p>{{_('No Hubs Periféricos')}}: </p>
+				{% for x in informe["cbx cbx-roles"]['nhubp'] %}
+					<p>
+						{{x}}
+					</p>
+				{% endfor %}
+				<p>{{_('No Hubs Conectores')}}: </p>
+				{% for x in informe["cbx cbx-roles"]['nhubc'] %}
+					<p>
+						{{x}}
+					</p>
+				{% endfor %}
+				<p>{{_('No Hubs Kinless')}}: </p>
+				{% for x in informe["cbx cbx-roles"]['nhubk'] %}
+					<p>
+						{{x}}
+					</p>
+				{% endfor %}
+				<br/>
+			{% endif %}
+		</div>
+	</div>
+	<footer></footer>
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script src="{{ url_for('static', filename='js/language.js') }}" type="text/javascript"></script>
+	<script type="text/javascript">
+		
+		function sendForm() {
+			var msg = "{{ _('Por favor introduzca valor en:') }}"
+			var send = true
+			if(document.getElementById("cbx-kcliperc").checked && document.getElementById("valkcliqper").value.length == 0){
+				send = false
+				msg += "\n" + "{{_('K del K-clique de comunidades')}}"
+			}
+			if(send){
+				document.getElementById("form").submit()
+			} else {
+				alert(msg)
+			}
+		}
+
+		//https://eureka.ykyuen.info/2011/02/22/jquery-javascript-capture-the-browser-or-tab-closed-event/
+		var validNavigation = false;
+
+		function endSession() {
+			$.ajax({
+		      type: "POST",
+		      contentType: "application/json;charset=utf-8",
+		      url: "/Fin-Sesion",
+		      traditional: "true",
+		      data: JSON.stringify({{ g.usuario }}),
+		      dataType: "json",
+		      success: function(response){
+          			location.reload();
+         		 }
+		    });
+		}
+		 
+		function wireUpEvents() {
+		  /*
+		  * For a list of events that triggers onbeforeunload on IE
+		  * check http://msdn.microsoft.com/en-us/library/ms536907(VS.85).aspx
+		  */
+		  window.onbeforeunload = function(event) {
+		  	//console.log(event)
+		  	console.log('before',validNavigation)
+		      if (!validNavigation) {
+		         endSession();
+		      }
+		  }
+		 
+		  // Attach the event keypress to exclude the F5 refresh
+		  $(document).bind('keydown', function(e) {
+		    if (e.keyCode == 116){
+		      validNavigation = true;
+		    }
+		  });
+		 
+		  // Attach the event click for all links in the page
+		  $("a").bind("click", function() {
+		    validNavigation = true;
+		  });
+		 
+		  // Attach the event submit for all forms in the page
+		  $("form").bind("submit", function() {
+		    validNavigation = true;
+		  });
+		 
+		  // Attach the event click for all inputs in the page
+		  $("input[type=submit]").bind("click", function() {
+		    validNavigation = true;
+		  });
+
+		  $("input[type=button]").bind("click", function() {
+		    validNavigation = true;
+	  	  });
+		}
+		 
+		// Wire up the events as soon as the DOM tree is ready
+		$(document).ready(function() {
+		  wireUpEvents();  
+		});
+	</script>
+</body>
+</html>
