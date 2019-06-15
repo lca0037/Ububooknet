@@ -9,6 +9,6 @@ LANGUAGES = {
 #Carpeta donde subir archivos
 upload_folder = os.path.dirname(os.path.realpath(__file__))+"\\ficheros"
 #Carpera donde se guardan las traducciones
-translations_folder = os.path.dirname(os.path.realpath(__file__))+"\\translations"
+translations_folder = os.path.dirname(os.path.realpath(__file__))+"/translations"
 #Clave secreta
 secretkey = secrets.token_urlsafe(16)
