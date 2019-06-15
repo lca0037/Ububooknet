@@ -20,7 +20,7 @@ class Lectorcsv:
             fichero: ruta al fichero csv a importar
         """
         i = 0
-        with open(fichero, newline='') as csvfile:
+        with open(fichero, newline='', encoding='utf-8') as csvfile:
             spamreader = csv.reader(csvfile, delimiter=',',skipinitialspace=True)
             for row in spamreader:
                 if (i%2 ==0):
