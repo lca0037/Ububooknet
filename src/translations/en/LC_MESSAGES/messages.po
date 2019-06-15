@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-06-13 22:30+0200\n"
-"PO-Revision-Date: 2019-06-15 20:29+0200\n"
+"POT-Creation-Date: 2019-06-15 21:23+0200\n"
+"PO-Revision-Date: 2019-06-15 21:24+0200\n"
 "Last-Translator: \n"
 "Language: en_GB\n"
 "Language-Team: \n"
@@ -19,11 +19,11 @@ msgstr ""
 "Generated-By: Babel 2.6.0\n"
 "X-Generator: Poedit 2.2.1\n"
 
-#: src/vista.py:51
+#: src/Controlador.py:51
 msgid "La ruta indicada no contiene un fichero epub"
 msgstr "The selected file is not an epub"
 
-#: src/vista.py:68
+#: src/Controlador.py:68
 msgid "Diccionario creado con éxito"
 msgstr "Dictionary was successfully created"
 
@@ -164,7 +164,7 @@ msgstr "Check the characters references to delete"
 msgid "Marque para eliminar la referencia"
 msgstr "Check to delete the reference"
 
-#: src/templates/delrefpers.html:106
+#: src/templates/delrefpers.html:105
 msgid "Las referencias seleccionadas han sido eliminados con éxito"
 msgstr "Selected references were succesfully deleted"
 
@@ -177,7 +177,7 @@ msgstr "Automatic Dictionaries"
 #: src/templates/params.html:29 src/templates/red.html:30
 #: src/templates/visinforme.html:29
 msgid "PARÁMETROS ADICIONALES"
-msgstr "ADITIONAL PARAMETERS"
+msgstr "ADDITIONAL PARAMETERS"
 
 #: src/templates/dictaut.html:29 src/templates/index.html:29
 #: src/templates/informe.html:29 src/templates/moddict.html:29
@@ -233,11 +233,11 @@ msgstr "Upload"
 msgid "Fichero introducido correctamente"
 msgstr "File was properly uploaded"
 
-#: src/templates/impdict.html:62 src/templates/index.html:55
+#: src/templates/impdict.html:62 src/templates/index.html:56
 msgid "Formato de archivo equivocado"
 msgstr "File format is wrong"
 
-#: src/templates/impdict.html:65 src/templates/index.html:58
+#: src/templates/impdict.html:65 src/templates/index.html:59
 msgid "Introduzca un archivo"
 msgstr "Enter a file"
 
@@ -389,7 +389,7 @@ msgstr "Detect Roles"
 msgid "Por favor introduzca un valor"
 msgstr "Please introduce a value"
 
-#: src/templates/informe.html:149 src/templates/visinforme.html:241
+#: src/templates/informe.html:149 src/templates/visinforme.html:244
 msgid "K del K-clique de comunidades"
 msgstr "K for the K-clique communities"
 
@@ -614,7 +614,7 @@ msgstr "Enter a url from *.fandom.com/wiki/Category:Characters"
 
 #: src/templates/params.html:14
 msgid "Parámetros adicionales"
-msgstr "Aditional parameters"
+msgstr "Additional parameters"
 
 #: src/templates/params.html:35
 msgid "Introduzca el número mínimo de apariciones en el libro"
@@ -732,95 +732,103 @@ msgstr "Density"
 msgid "Componentes Conectados"
 msgstr "Connected Components"
 
-#: src/templates/visinforme.html:91
+#: src/templates/visinforme.html:82
+msgid "Componente"
+msgstr "Component"
+
+#: src/templates/visinforme.html:92
 msgid "Excentricidad"
 msgstr "Eccentricity"
 
-#: src/templates/visinforme.html:98
+#: src/templates/visinforme.html:99
 msgid "Diametro"
 msgstr "Diameter"
 
-#: src/templates/visinforme.html:101
+#: src/templates/visinforme.html:102
 msgid "Radio"
 msgstr "Radius"
 
-#: src/templates/visinforme.html:104
+#: src/templates/visinforme.html:105
 msgid "Distancia Media"
 msgstr "Average Distance"
 
-#: src/templates/visinforme.html:107
+#: src/templates/visinforme.html:108
 msgid "Clustering Local"
 msgstr "Local Clustering"
 
-#: src/templates/visinforme.html:114
+#: src/templates/visinforme.html:115
 msgid "Clustering Global"
 msgstr "Global Clustering"
 
-#: src/templates/visinforme.html:117
+#: src/templates/visinforme.html:118
 msgid "Transitividad"
 msgstr "Transitivity"
 
-#: src/templates/visinforme.html:120
+#: src/templates/visinforme.html:121
 msgid "Centralidad Grado"
 msgstr "Degree Centrality"
 
-#: src/templates/visinforme.html:127
+#: src/templates/visinforme.html:128
 msgid "Centralidad Cercanía"
 msgstr "Closeness Centrality"
 
-#: src/templates/visinforme.html:134
+#: src/templates/visinforme.html:135
 msgid "Centralidad Intermediación"
 msgstr "Betweenness Centrality"
 
-#: src/templates/visinforme.html:141
+#: src/templates/visinforme.html:142
 msgid "Centralidad Intermediación Camino Aleatorio"
 msgstr "Random Path Betweenness Centrality"
 
-#: src/templates/visinforme.html:148
+#: src/templates/visinforme.html:149
 msgid "Centralidad Valor Propio"
 msgstr "Eigenvector Centrality"
 
-#: src/templates/visinforme.html:155
+#: src/templates/visinforme.html:156
 msgid "Pagerank"
 msgstr "Pagerank"
 
-#: src/templates/visinforme.html:162
+#: src/templates/visinforme.html:163
 msgid "Comunidades K-clique"
 msgstr "K-clique Communities"
 
-#: src/templates/visinforme.html:173
+#: src/templates/visinforme.html:165 src/templates/visinforme.html:177
+msgid "Comunidad"
+msgstr "Community"
+
+#: src/templates/visinforme.html:175
 msgid "Comunidades Girvan-Newman"
 msgstr "Girvan-Newman Communities"
 
-#: src/templates/visinforme.html:184
+#: src/templates/visinforme.html:187
 msgid "Hubs Provinciales"
 msgstr "Provincial Hubs"
 
-#: src/templates/visinforme.html:190
+#: src/templates/visinforme.html:193
 msgid "Hubs Conectores"
 msgstr "Connector Hubs"
 
-#: src/templates/visinforme.html:196
+#: src/templates/visinforme.html:199
 msgid "Hubs Kinless"
 msgstr "Kinless Hubs"
 
-#: src/templates/visinforme.html:202
+#: src/templates/visinforme.html:205
 msgid "No Hubs Ultra Periféricos"
 msgstr "Ultra Peripheral Nodes"
 
-#: src/templates/visinforme.html:208
+#: src/templates/visinforme.html:211
 msgid "No Hubs Periféricos"
 msgstr "Peripheral Nodes"
 
-#: src/templates/visinforme.html:214
+#: src/templates/visinforme.html:217
 msgid "No Hubs Conectores"
 msgstr "Non Hub Connectors"
 
-#: src/templates/visinforme.html:220
+#: src/templates/visinforme.html:223
 msgid "No Hubs Kinless"
 msgstr "Non Hub Kinless Nodes"
 
-#: src/templates/visinforme.html:237
+#: src/templates/visinforme.html:240
 msgid "Por favor introduzca valor en:"
 msgstr "Please introduce a value in:"
 

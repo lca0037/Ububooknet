@@ -79,6 +79,7 @@
 			{% if "cbx cbx-concomp" in informe.keys() %}
 				<p><div class="apartado">{{_('Componentes Conectados')}}:</div> </p>
 				{% for x in informe["cbx cbx-concomp"] %}
+					<div class="subapartado">{{_('Componente')}}: </div>
 					<p>
 						{% for i in x %}
 							{{ i }}, 
@@ -161,6 +162,7 @@
 			{% if "cbx cbx-kcliperc" in informe.keys() %}
 				<p><div class="apartado">{{_('Comunidades K-clique')}}:</div> </p>
 				{% for x in informe["cbx cbx-kcliperc"] %}
+					<div class="subapartado">{{_('Comunidad')}}: </div>
 					<p>
 						{% for i in x %}
 							{{ i }}, 
@@ -172,6 +174,7 @@
 			{% if "cbx cbx-girnew" in informe.keys() %}
 				<p><div class="apartado">{{_('Comunidades Girvan-Newman')}}:</div> </p>
 				{% for x in informe["cbx cbx-girnew"] %}
+					<div class="subapartado">{{_('Comunidad')}}: </div>
 					<p>
 						{% for i in x %}
 							{{ i }}, 
