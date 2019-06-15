@@ -20,6 +20,7 @@ tbd = TempBD.TempBD.getInstance()
 def get_locale():
     if('lang' not in session):
         session['lang'] = request.accept_languages.best_match(cfg.LANGUAGES.keys())
+    print(session['lang'])
     return session['lang']
 
 @app.before_request
