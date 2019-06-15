@@ -1,0 +1,9 @@
+Flask==1.0.2
+numpy==1.15.4
+Flask_Babel==0.12.2
+matplotlib==3.0.2
+networkx==2.2
+ply==3.11
+beautifulsoup4==4.7.1
+secrets==1.0.2
+tst==0.9a48
