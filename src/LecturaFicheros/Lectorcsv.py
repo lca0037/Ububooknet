@@ -20,17 +20,21 @@ class Lectorcsv:
             fichero: ruta al fichero csv a importar
         """
         i = 0
+        x= True
         with open(fichero, newline='', encoding='utf-8') as csvfile:
             spamreader = csv.reader(csvfile, delimiter=',',skipinitialspace=True)
             for row in spamreader:
-                if (i%2 ==0):
-                    i+=1
-                    actual = row[0]
-                    self.__modelo.anadirPersonaje(actual,actual)
+                if(x):
+                    x = False
                 else:
-                    i+=1
-                    for n in row:
-                        self.__modelo.anadirReferenciaPersonaje(actual,n)
+                    if (i%2 ==0):
+                        i+=1
+                        actual = row[0]
+                        self.__modelo.anadirPersonaje(actual,actual)
+                    else:
+                        i+=1
+                        for n in row:
+                            self.__modelo.anadirReferenciaPersonaje(actual,n)
 
     def exportDict(self, fichero):
         """
@@ -43,6 +47,8 @@ class Lectorcsv:
         pers = self.__modelo.getPersonajes()
         with open(fichero, mode='w', newline='', encoding='utf-8') as csvfile:
             spamwriter = csv.writer(csvfile, delimiter=',')
+            spamwriter.writerow('Diccionario')
             for persk in pers.keys():
                 spamwriter.writerow([persk])
                 spamwriter.writerow(pers[persk].getPersonaje().keys())
+
