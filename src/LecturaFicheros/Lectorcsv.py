@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import csv
+import unicodecsv as csv
 
 class Lectorcsv:
     """
