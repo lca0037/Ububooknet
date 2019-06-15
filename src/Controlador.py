@@ -20,7 +20,6 @@ tbd = TempBD.TempBD.getInstance()
 def get_locale():
     if('lang' not in session):
         session['lang'] = request.accept_languages.best_match(cfg.LANGUAGES.keys())
-    print(session['lang'])
     return session['lang']
 
 @app.before_request
@@ -35,10 +34,10 @@ def index():
         m = mod.Modelo()
         if('usuario' not in session or session['usuario']=="null"):
             session['usuario'] = tbd.addSesion(m)
-            dirName = app.config['UPLOAD_FOLDER'] + "\\" + str(session['usuario'])
+            dirName = os.path.join(app.config['UPLOAD_FOLDER'], str(session['usuario']))
             if(not os.path.exists(dirName)):
                 os.makedirs(dirName)
-        fullpath = app.config['UPLOAD_FOLDER'] + "\\" + str(session['usuario']) + "\\" + fich.filename
+        fullpath = os.path.join(app.config['UPLOAD_FOLDER'], str(session['usuario']), fich.filename)
         fich.save(fullpath)
         if(mod.Modelo.esEpub(fullpath)):
             session['fichero'] = fich.filename
@@ -80,7 +79,7 @@ def impdict():
     g.usuario = session['usuario']
     if request.method == "POST":
         fich = request.files["btn btn-selcsv"]
-        fullpath = app.config['UPLOAD_FOLDER'] + "\\" + str(session['usuario']) + "\\" + fich.filename
+        fullpath = os.path.join(app.config['UPLOAD_FOLDER'], str(session['usuario']), fich.filename)
         fich.save(fullpath)
         m = tbd.getObject(session['usuario'])
         m.importDict(fullpath)
@@ -121,7 +120,7 @@ def moddict():
         elif("btn btn-modid" in request.form):
             return redirect(url_for('modidpers'))
         elif("btn btn-expdict" in request.form):
-            filename = app.config['UPLOAD_FOLDER']+ "\\" + str(session['usuario']) + "\\" + session['fichero'] + ".csv"
+            filename = os.path.join(app.config['UPLOAD_FOLDER'], str(session['usuario']), session['fichero'] + ".csv")
             m.exportDict(filename)
             return send_file(filename, mimetype='text/csv', attachment_filename=session['fichero'] + ".csv", as_attachment=True)
     return render_template('moddict.html', pers = m.getPersonajes())
@@ -223,15 +222,15 @@ def red():
     jsonred = m.visualizar()
     if request.method == "POST":
         if("btn btn-expgml" in request.form):
-            filename = app.config['UPLOAD_FOLDER'] + "\\" + str(session['usuario']) + "\\" + session['fichero'] + ".gml"
+            filename = os.path.join(app.config['UPLOAD_FOLDER'], str(session['usuario']), session['fichero'] + ".gml")
             m.exportGML(filename)
             return send_file(filename, mimetype='text/gml', attachment_filename=session['fichero'] + ".gml", as_attachment=True)
         elif("btn btn-expgexf" in request.form):
-            filename = app.config['UPLOAD_FOLDER'] + "\\" + str(session['usuario']) + "\\" + session['fichero'] + ".gexf"
+            filename = os.path.join(app.config['UPLOAD_FOLDER'], str(session['usuario']), session['fichero'] + ".gexf")
             m.exportGEXF(filename)
             return send_file(filename, mimetype='text/gexf', attachment_filename=session['fichero'] + ".gexf", as_attachment=True)
         elif("btn btn-expnet" in request.form):
-            filename = app.config['UPLOAD_FOLDER'] + "\\" + str(session['usuario']) + "\\" + session['fichero'] + ".net"
+            filename = os.path.join(app.config['UPLOAD_FOLDER'], str(session['usuario']), session['fichero'] + ".net")
             m.exportPajek(filename)
             return send_file(filename, mimetype='text/net', attachment_filename=session['fichero'] + ".net", as_attachment=True)
     return render_template('red.html', jsonred = jsonred, config = session['configVis'])
@@ -263,8 +262,6 @@ def idioma():
     if request.method == "POST":
         ajax = request.get_json()
         session['lang'] = ajax
-        print(ajax)
-        print(session['lang'])
         return ajax
     
 @app.route('/Guardar-Config/', methods=["GET", "POST"])
@@ -279,7 +276,7 @@ def finSesion():
     if request.method == "POST":
         ajax = request.get_json()
         tbd.delSesion(int(ajax))
-        shutil.rmtree(app.config['UPLOAD_FOLDER'] + "\\" + str(session['usuario']))
+        shutil.rmtree(os.path.join(app.config['UPLOAD_FOLDER'], str(session['usuario'])))
         session['fichero'] = "null"
         session['usuario'] = "null"
         return "true"
