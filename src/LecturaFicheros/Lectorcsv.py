@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import unicodecsv as csv
+import csv
 
 class Lectorcsv:
     """
@@ -41,7 +41,7 @@ class Lectorcsv:
             fichero: ruta donde exportar el diccionario
         """
         pers = self.__modelo.getPersonajes()
-        with open(fichero, mode='w', newline='') as csvfile:
+        with open(fichero, mode='w', newline='', encoding='utf-8') as csvfile:
             spamwriter = csv.writer(csvfile, delimiter=',')
             for persk in pers.keys():
                 spamwriter.writerow([persk])
