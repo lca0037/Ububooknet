@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-06-13 22:30+0200\n"
-"PO-Revision-Date: 2019-06-13 22:51+0200\n"
+"PO-Revision-Date: 2019-06-15 20:29+0200\n"
 "Last-Translator: \n"
 "Language: en_GB\n"
 "Language-Team: \n"
@@ -84,7 +84,7 @@ msgstr "UPLOAD EPUB"
 #: src/templates/params.html:29 src/templates/red.html:30
 #: src/templates/visinforme.html:29
 msgid "DICCIONARIO de PERSONAJES"
-msgstr "CHARACTERS DICTIONARTY"
+msgstr "CHARACTERS DICTIONARY"
 
 #: src/templates/delpers.html:29 src/templates/delrefpers.html:29
 #: src/templates/dictaut.html:29 src/templates/index.html:29
@@ -371,7 +371,7 @@ msgstr "Get K-clique community"
 
 #: src/templates/informe.html:123
 msgid "Valor k del K-clique para comunidades"
-msgstr "k value for K-clique community"
+msgstr "K value for K-clique community"
 
 #: src/templates/informe.html:127
 msgid "Obtener Girvan-Newman"
@@ -399,7 +399,7 @@ msgstr "K for the K-clique communities greater or equal than 2"
 
 #: src/templates/informe.html:156
 msgid "Esto puede tardar unos minutos."
-msgstr "This may long a couple of minutes"
+msgstr "This may last a couple of minutes."
 
 #: src/templates/joinpers.html:14 src/templates/moddict.html:38
 msgid "Juntar Personajes"
@@ -462,8 +462,8 @@ msgid ""
 "Primero se van a buscar las posiciones de los personajes, esto puede tardar "
 "unos minutos."
 msgstr ""
-"The characters positions are going to be find, this process can long a couple "
-"of minutes."
+"The characters positions are going to be obtained, this process may last a "
+"couple of minutes."
 
 #: src/templates/modidpers.html:29
 msgid "MODIFICAR ID PERSONAJE"
