@@ -32,7 +32,7 @@ def index():
     if request.method == "POST":
         fich = request.files["btn btn-selepub"]
         m = mod.Modelo()
-        if('usuario' not in session or session['usuario']=="null"):
+        if('usuario' not in session or session['usuario'] not in tbd.getSesiones().keys()):
             session['usuario'] = tbd.addSesion(m)
             dirName = os.path.join(app.config['UPLOAD_FOLDER'], str(session['usuario']))
             if(not os.path.exists(dirName)):
@@ -55,7 +55,7 @@ def index():
 @app.route('/Dicts-Automaticos/', methods=["GET", "POST"])
 def dictaut():
     msg = ''
-    if('fichero' not in session or session['fichero']=="null"):
+    if('fichero' not in session or session['usuario'] not in tbd.getSesiones().keys()):
         return redirect(url_for('index'))
     g.usuario = session['usuario']
     if request.method == "POST":
@@ -74,7 +74,7 @@ def dictaut():
 
 @app.route('/Dicts-Automaticos/Importar-Dict/', methods=["GET","POST"])
 def impdict():
-    if('fichero' not in session or session['fichero']=="null"):
+    if('fichero' not in session or session['usuario'] not in tbd.getSesiones().keys()):
         return redirect(url_for('index'))
     g.usuario = session['usuario']
     if request.method == "POST":
@@ -87,7 +87,7 @@ def impdict():
 
 @app.route('/Dicts-Automaticos/Obtener-Dict/', methods=["GET","POST"])
 def obtdict():
-    if('fichero' not in session or session['fichero']=="null"):
+    if('fichero' not in session or session['usuario'] not in tbd.getSesiones().keys()):
         return redirect(url_for('index'))
     g.usuario = session['usuario']
     if request.method == "POST":
@@ -98,7 +98,7 @@ def obtdict():
 
 @app.route('/Modificar-Diccionario/', methods=["GET", "POST"])   
 def moddict():
-    if('fichero' not in session or session['fichero']=="null"):
+    if('fichero' not in session or session['usuario'] not in tbd.getSesiones().keys()):
         return redirect(url_for('index'))
     g.usuario = session['usuario']
     m = tbd.getObject(session['usuario'])
@@ -127,7 +127,7 @@ def moddict():
 
 @app.route('/Modificar-Diccionario/Anadir-Personaje/', methods=["GET", "POST"])    
 def newpers():
-    if('fichero' not in session or session['fichero']=="null"):
+    if('fichero' not in session or session['usuario'] not in tbd.getSesiones().keys()):
         return redirect(url_for('index'))
     g.usuario = session['usuario']
     m = tbd.getObject(session['usuario'])
@@ -139,7 +139,7 @@ def newpers():
 
 @app.route('/Modificar-Diccionario/Eliminar-Personaje/', methods=["GET", "POST"])    
 def delpers():
-    if('fichero' not in session or session['fichero']=="null"):
+    if('fichero' not in session or session['usuario'] not in tbd.getSesiones().keys()):
         return redirect(url_for('index'))
     g.usuario = session['usuario']
     m = tbd.getObject(session['usuario'])
@@ -151,7 +151,7 @@ def delpers():
 
 @app.route('/Modificar-Diccionario/Juntar-Personajes/', methods=["GET", "POST"])    
 def joinpers():
-    if('fichero' not in session or session['fichero']=="null"):
+    if('fichero' not in session or session['usuario'] not in tbd.getSesiones().keys()):
         return redirect(url_for('index'))
     g.usuario = session['usuario']
     m = tbd.getObject(session['usuario'])
@@ -163,7 +163,7 @@ def joinpers():
    
 @app.route('/Modificar-Diccionario/Nueva-Referencia/', methods=["GET", "POST"])    
 def newrefpers():
-    if('fichero' not in session or session['fichero']=="null"):
+    if('fichero' not in session or session['usuario'] not in tbd.getSesiones().keys()):
         return redirect(url_for('index'))
     g.usuario = session['usuario']
     m = tbd.getObject(session['usuario'])
@@ -175,7 +175,7 @@ def newrefpers():
 
 @app.route('/Modificar-Diccionario/Eliminar-Referencia/', methods=["GET", "POST"])    
 def delrefpers():
-    if('fichero' not in session or session['fichero']=="null"):
+    if('fichero' not in session or session['usuario'] not in tbd.getSesiones().keys()):
         return redirect(url_for('index'))
     g.usuario = session['usuario']
     m = tbd.getObject(session['usuario'])
@@ -199,7 +199,7 @@ def modidpers():
     
 @app.route('/Parametros/', methods=["GET", "POST"])
 def params():
-    if('fichero' not in session or session['fichero']=="null"):
+    if('fichero' not in session or session['usuario'] not in tbd.getSesiones().keys()):
         return redirect(url_for('index'))
     g.usuario = session['usuario']
     m = tbd.getObject(session['usuario'])
@@ -215,7 +215,7 @@ def params():
 
 @app.route('/Red/', methods=["GET", "POST"])
 def red():
-    if('fichero' not in session or session['fichero']=="null"):
+    if('fichero' not in session or session['usuario'] not in tbd.getSesiones().keys()):
         return redirect(url_for('index'))
     g.usuario = session['usuario']
     m = tbd.getObject(session['usuario'])
@@ -237,7 +237,7 @@ def red():
 
 @app.route('/Informe/', methods=["GET", "POST"])
 def informe():
-    if('fichero' not in session or session['fichero']=="null"):
+    if('fichero' not in session or session['usuario'] not in tbd.getSesiones().keys()):
         return redirect(url_for('index'))
     g.usuario = session['usuario']
     m = tbd.getObject(session['usuario'])
@@ -251,7 +251,7 @@ def informe():
 
 @app.route('/Informe/Visualizar/', methods=["GET", "POST"])
 def visinforme():
-    if('fichero' not in session or session['fichero']=="null"):
+    if('fichero' not in session or session['usuario'] not in tbd.getSesiones().keys()):
         return redirect(url_for('index'))
     g.usuario = session['usuario']
     m = tbd.getObject(session['usuario'])
