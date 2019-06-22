@@ -57,6 +57,7 @@
 				alert("{{ _('Introduzca una url') }}")
 			} else {
 				if(x.value.includes("fandom")){
+					validNavigation = true;
 					alert("{{ _('Personajes que aparecen en la página introducidos') }}")
 					document.getElementById("form").submit();
 				} else {

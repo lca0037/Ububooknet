@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
-from flask import render_template, Flask, request, url_for, redirect, json, send_file, make_response, g, session
+from flask import render_template, Flask, request, url_for, redirect, json, send_file, make_response, g, session, send_from_directory
 from src.Modelo import Modelo as mod
 from src import Config as cfg
 from src.PersistenciaSesiones import TempBD
@@ -245,7 +245,8 @@ def informe():
 #        print(request.form)
         x = dict(request.form)
 #        del x['btn btn-informe']
-        m.generarInforme(x)
+        direc = os.path.join(app.config['UPLOAD_FOLDER'], str(session['usuario']))
+        m.generarInforme(x,direc)
         return redirect(url_for('visinforme'))
     return render_template('informe.html')
 
@@ -256,6 +257,10 @@ def visinforme():
     g.usuario = session['usuario']
     m = tbd.getObject(session['usuario'])
     return render_template('visinforme.html', informe = m.informe)
+
+@app.route('/Informe/Visualizar/<path:filename>')
+def download_file(filename):
+    return send_from_directory(os.path.join(app.config['UPLOAD_FOLDER'], str(session['usuario'])), filename, as_attachment=True)
 
 @app.route('/Idioma/', methods=["GET", "POST"])
 def idioma():

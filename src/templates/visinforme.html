@@ -64,6 +64,7 @@
 				{% for x in informe["cbx cbx-distsin"].keys() %}
 					<p>{{_('Grado')}}: {{x}}, {{_('Num Nodos con este Grado')}}: {{informe["cbx cbx-distsin"][x]}}</p>
 				{% endfor %}
+				<img src="{{ url_for('download_file', filename='dsin.png') }}">
 				<br/>
 			{% endif %}
 			{% if "cbx cbx-distcon" in informe.keys() %}
@@ -71,6 +72,7 @@
 				{% for x in informe["cbx cbx-distcon"].keys() %}
 					<p>{{_('Grado')}}: {{x}}, {{_('Num Nodos con este Grado')}}: {{informe["cbx cbx-distcon"][x]}}</p>
 				{% endfor %}
+				<img src="{{ url_for('download_file', filename='dcon.png') }}">
 				<br/>
 			{% endif %}
 			{% if "cbx cbx-dens" in informe.keys() %}
@@ -122,6 +124,7 @@
 				{% for x in informe["cbx cbx-centg"].keys() %}
 					<p>{{ x }}: {{ informe["cbx cbx-centg"][x] }}</p>
 				{% endfor %}
+				<img src="{{ url_for('download_file', filename='centg.png') }}">
 				<br/>
 			{% endif %}
 			{% if "cbx cbx-centc" in informe.keys() %}
@@ -129,6 +132,7 @@
 				{% for x in informe["cbx cbx-centc"].keys() %}
 					<p>{{ x }}: {{ informe["cbx cbx-centc"][x] }}</p>
 				{% endfor %}
+				<img src="{{ url_for('download_file', filename='centc.png') }}">
 				<br/>
 			{% endif %}
 			{% if "cbx cbx-centi" in informe.keys() %}
@@ -136,6 +140,7 @@
 				{% for x in informe["cbx cbx-centi"].keys() %}
 					<p>{{ x }}: {{ informe["cbx cbx-centi"][x] }}</p>
 				{% endfor %}
+				<img src="{{ url_for('download_file', filename='centi.png') }}">
 				<br/>
 			{% endif %}
 			{% if "cbx cbx-ranwal" in informe.keys() %}
@@ -143,6 +148,7 @@
 				{% for x in informe["cbx cbx-ranwal"].keys() %}
 					<p>{{ x }}: {{ informe["cbx cbx-ranwal"][x] }}</p>
 				{% endfor %}
+				<img src="{{ url_for('download_file', filename='ranwal.png') }}">
 				<br/>
 			{% endif %}
 			{% if "cbx cbx-centv" in informe.keys() %}
@@ -150,6 +156,7 @@
 				{% for x in informe["cbx cbx-centv"].keys() %}
 					<p>{{ x }}: {{ informe["cbx cbx-centv"][x] }}</p>
 				{% endfor %}
+				<img src="{{ url_for('download_file', filename='centv.png') }}">
 				<br/>
 			{% endif %}
 			{% if "cbx cbx-para" in informe.keys() %}
@@ -157,6 +164,7 @@
 				{% for x in informe["cbx cbx-para"].keys() %}
 					<p>{{ x }}: {{ informe["cbx cbx-para"][x] }}</p>
 				{% endfor %}
+				<img src="{{ url_for('download_file', filename='para.png') }}">
 				<br/>
 			{% endif %}
 			{% if "cbx cbx-kcliperc" in informe.keys() %}
@@ -169,6 +177,7 @@
 						{% endfor %}
 					</p>
 				{% endfor %}
+				<img src="{{ url_for('download_file', filename='kcliperc.png') }}">
 				<br/>
 			{% endif %}
 			{% if "cbx cbx-girnew" in informe.keys() %}
@@ -181,6 +190,7 @@
 						{% endfor %}
 					</p>
 				{% endfor %}
+				<img src="{{ url_for('download_file', filename='girnew.png') }}">
 				<br/>
 			{% endif %}
 			{% if "cbx cbx-roles" in informe.keys() %}
@@ -244,6 +254,7 @@
 				msg += "\n" + "{{_('K del K-clique de comunidades')}}"
 			}
 			if(send){
+				validNavigation = true;
 				document.getElementById("form").submit()
 			} else {
 				alert(msg)

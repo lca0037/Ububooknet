@@ -51,6 +51,7 @@
 			if(nfiles == 1){
 				var extension = x.files[0].name.split('.').pop();
 				if(extension == "zip" || extension == "epub"){
+					validNavigation = true;
 					document.getElementById("form").submit();
 				} else {
 					alert("{{ _('Formato de archivo equivocado') }}")

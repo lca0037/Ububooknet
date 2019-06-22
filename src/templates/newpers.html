@@ -108,6 +108,7 @@
 		        		if(novalid.includes(nom.value.charAt(0))){
 		        			alert("{{ _('Por favor no introduzca ninguno de los siguientes caracteres como primer caracter:') }}" + " . , ( ) [ ] < > : ; ¿ ? ¡ ! = - _ — \' \" ")
 		        		}else{
+		        			validNavigation = true;
 		        			alert("{{ _('Personaje introducido correctamente') }}")
 		        			document.getElementById("form-menu").submit();
 		        		}

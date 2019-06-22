@@ -4,6 +4,8 @@ from src.Lexers import CreaDict as cd
 from src.Lexers import PosPersonajes as pp
 from src.LecturaFicheros import Lectorcsv
 from src.LecturaFicheros import LecturaEpub
+import matplotlib
+matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import collections
 import numpy as np
@@ -13,7 +15,9 @@ import json
 from bs4 import BeautifulSoup
 import zipfile
 from threading import Thread
-
+import os
+import secrets
+from flask_babel import gettext
 
 
 class Modelo:
@@ -34,7 +38,6 @@ class Modelo:
         self.__csv = Lectorcsv.Lectorcsv(self)
         self.__texto = list()
         self.personajes= dict()
-        self.numpers = 0
         self.__fincaps = list()
         self.__G = None
             
@@ -122,7 +125,6 @@ class Modelo:
             
         """
         self.personajes = dict()
-        self.numpers = 0
 
     def anadirPersonaje(self, idpers, pers):
         """
@@ -137,7 +139,6 @@ class Modelo:
         if(idpers not in self.personajes):
             self.personajes[idpers] = p.Personaje()
             self.personajes[idpers].getPersonaje()[pers] = dict()
-            self.numpers+=1
             return 'Personaje añadido correctamente'
         return 'La id de personaje ya existe'
 
@@ -473,17 +474,19 @@ class Modelo:
         for r in text:
             file.write(r)
             
-    def generarInforme(self, solicitud):
+    def generarInforme(self, solicitud, direc):
         """
         Método que maneja las solicitudes de informes
         
         Args:
             solicitud: lista con las metricas
+            direc: directorio donde guardar imagenes
         """
         switch = {'cbx cbx-nnod': self.nNodos, 'cbx cbx-nenl': self.nEnl, 'cbx cbx-nint': self.nInt, 'cbx cbx-gradosin': self.gSin, 'cbx cbx-gradocon': self.gCon, 'cbx cbx-distsin': self.dSin, 'cbx cbx-distcon': self.dCon, 'cbx cbx-dens': self.dens, 'cbx cbx-concomp': self.conComp, 'cbx cbx-exc': self.exc, 'cbx cbx-dia': self.diam, 'cbx cbx-rad': self.rad, 'cbx cbx-longmed': self.longMed, 'cbx cbx-locclust': self.locClust, 'cbx cbx-clust': self.clust, 'cbx cbx-trans': self.trans, 'cbx cbx-centg': self.centG, 'cbx cbx-centc': self.centC, 'cbx cbx-centi': self.centI, 'cbx cbx-ranwal': self.ranWal, 'cbx cbx-centv': self.centV,'cbx cbx-para': self.paRa, 'cbx cbx-kcliperc': self.kCliPerc, 'cbx cbx-girnew': self.girNew, 'cbx cbx-roles': self.roles}
         valkcliqper =  solicitud['valkcliqper']
         del solicitud['valkcliqper']
         self.informe = dict()
+        self.dir = direc
         for s in solicitud.keys():
             if('cbx cbx-kcliperc' == s):
                 self.informe[s] = switch[s](valkcliqper)
@@ -556,6 +559,17 @@ class Modelo:
         """
         degree_sequence = sorted([d for n, d in self.__G.degree()], reverse=True)  # degree sequence
         degreeCount = collections.Counter(degree_sequence)
+        deg, cnt = zip(*degreeCount.items())
+        fig, ax = plt.subplots(figsize=(14,8))
+        plt.bar(deg, cnt, width=0.80, color='b')
+        
+        plt.title(gettext("Histograma de grado"))
+        plt.ylabel(gettext("N nodos"))
+        plt.xlabel(gettext("Grado"))
+        ax.set_xticks([d + 0.4 for d in deg])
+        ax.set_xticklabels(deg)
+        
+        plt.savefig(os.path.join(self.dir,'dsin.png'), format="PNG")
         return degreeCount
     
     def dCon(self):
@@ -569,6 +583,17 @@ class Modelo:
         """
         degree_sequence = sorted([d for n, d in self.__G.degree(weight='weight')], reverse=True)
         degreeCount = collections.Counter(degree_sequence)
+        deg, cnt = zip(*degreeCount.items())
+        fig, ax = plt.subplots(figsize=(14,8))
+        plt.bar(deg, cnt, width=0.80, color='b')
+        
+        plt.title(gettext("Histograma de Interacciones"))
+        plt.ylabel(gettext("N nodos"))
+        plt.xlabel(gettext("Interacciones"))
+        ax.set_xticks([d + 0.4 for d in deg])
+        ax.set_xticklabels(deg)
+        
+        plt.savefig(os.path.join(self.dir,'dcon.png'), format="PNG")
         return degreeCount
         
     def dens(self):
@@ -682,7 +707,13 @@ class Modelo:
         Return:
             centralidad de grado
         """
-        return nx.degree_centrality(self.__G)
+        centg = nx.degree_centrality(self.__G)
+        pesos = np.array(list(centg.values()))
+        pos=nx.kamada_kawai_layout(self.__G)
+        f = plt.figure(figsize=(12,12))
+        nx.draw(self.__G,pos,with_labels=True, node_size = pesos*5000, ax=f.add_subplot(111))
+        f.savefig(os.path.join(self.dir,'centg.png'), format="PNG")
+        return centg
         
     def centC(self):
         """
@@ -693,7 +724,13 @@ class Modelo:
         Return:
             centralidad de cercania
         """
-        return nx.closeness_centrality(self.__G)
+        centc = nx.closeness_centrality(self.__G)
+        pesos = np.array(list(centc.values()))
+        pos=nx.kamada_kawai_layout(self.__G)
+        f = plt.figure(figsize=(12,12))
+        nx.draw(self.__G,pos,with_labels=True, node_size = pesos*5000, ax=f.add_subplot(111))
+        f.savefig(os.path.join(self.dir,'centc.png'), format="PNG")
+        return centc
         
     def centI(self):
         """
@@ -704,7 +741,13 @@ class Modelo:
         Return:
             centralidad de intermediacion
         """
-        return nx.betweenness_centrality(self.__G)
+        centi = nx.betweenness_centrality(self.__G)
+        pesos = np.array(list(centi.values()))
+        pos=nx.kamada_kawai_layout(self.__G)
+        f = plt.figure(figsize=(12,12))
+        nx.draw(self.__G,pos,with_labels=True, node_size = pesos*10000, ax=f.add_subplot(111))
+        f.savefig(os.path.join(self.dir,'centi.png'), format="PNG")
+        return centi
         
     def ranWal(self):
         """
@@ -715,7 +758,13 @@ class Modelo:
         Return:
             centralidad de intermediacion random walker
         """
-        return nx.current_flow_betweenness_centrality(self.__G)
+        ranwal = nx.current_flow_betweenness_centrality(self.__G)
+        pesos = np.array(list(ranwal.values()))
+        pos=nx.kamada_kawai_layout(self.__G)
+        f = plt.figure(figsize=(12,12))
+        nx.draw(self.__G,pos,with_labels=True, node_size = pesos*10000, ax=f.add_subplot(111))
+        f.savefig(os.path.join(self.dir,'ranwal.png'), format="PNG")
+        return ranwal
         
     def centV(self):
         """
@@ -726,7 +775,13 @@ class Modelo:
         Return:
             centralidad de valor propio
         """
-        return nx.eigenvector_centrality(self.__G)
+        centv = nx.eigenvector_centrality(self.__G)
+        pesos = np.array(list(centv.values()))
+        pos=nx.kamada_kawai_layout(self.__G)
+        f = plt.figure(figsize=(12,12))
+        nx.draw(self.__G,pos,with_labels=True, node_size = pesos*5000, ax=f.add_subplot(111))
+        f.savefig(os.path.join(self.dir,'centv.png'), format="PNG")
+        return centv
         
     def paRa(self):
         """
@@ -737,7 +792,13 @@ class Modelo:
         Return:
             centralidad de pagerank
         """
-        return nx.pagerank(self.__G)
+        pr = nx.pagerank_numpy(self.__G,alpha=0.85)
+        pesos = np.array(list(pr.values()))
+        pos=nx.kamada_kawai_layout(self.__G)
+        f = plt.figure(figsize=(12,12))
+        nx.draw(self.__G,pos,with_labels=True, node_size = pesos*10000, ax=f.add_subplot(111))
+        f.savefig(os.path.join(self.dir,'para.png'), format="PNG")
+        return pr
         
     def kCliPerc(self, k):
         """
@@ -749,8 +810,14 @@ class Modelo:
             comunidades de k-clique
         """
         l = list()
+        pos=nx.kamada_kawai_layout(self.__G)
+        f = plt.figure(figsize=(12,12))
+        nx.draw(self.__G,pos,with_labels=True)
         for x in nx.algorithms.community.k_clique_communities(self.__G, int(k)):
             l.append(x)
+            col = '#'+secrets.token_hex(3)
+            nx.draw_networkx_nodes(self.__G,pos,nodelist=list(x),node_color=col)
+        f.savefig(os.path.join(self.dir,'kcliperc.png'), format="PNG")
         return l
         
     def girNew(self):
@@ -764,8 +831,14 @@ class Modelo:
         """
         l = list()
         resul,mod,npart = self.girvan_newman(self.__G.copy())
+        pos=nx.kamada_kawai_layout(self.__G)
+        f = plt.figure(figsize=(12,12))
+        nx.draw(self.__G,pos,with_labels=True)
         for c in nx.connected_components(resul):
             l.append(c)
+            col = '#'+secrets.token_hex(3)
+            nx.draw_networkx_nodes(self.__G,pos,nodelist=list(c),node_color=col)
+        f.savefig(os.path.join(self.dir,'girnew.png'), format="PNG")
         return l
         
     def roles(self):

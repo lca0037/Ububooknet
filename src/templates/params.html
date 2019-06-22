@@ -105,6 +105,7 @@
 						if(isNaN(dist.value)){
 							alert("{{ _('Introduzca un valor numérico para la distancia entre personajes') }}")
 						}else{
+							validNavigation = true;
 							document.getElementById("form-menu").submit();
 						}
 					}

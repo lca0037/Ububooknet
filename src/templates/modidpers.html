@@ -112,6 +112,7 @@
 			        	if(aux){
 			        		alert("{{ _('La nueva id introducida ya existe') }}")
 			        	}else{
+			        		validNavigation = true;
 			        		alert("{{ _('Id modificada correctamente') }}")
 			        		document.getElementById("form-menu").submit();
 			        	}

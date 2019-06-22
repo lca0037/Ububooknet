@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-06-15 21:23+0200\n"
-"PO-Revision-Date: 2019-06-16 11:15+0200\n"
+"POT-Creation-Date: 2019-06-22 17:50+0200\n"
+"PO-Revision-Date: 2019-06-22 17:52+0200\n"
 "Last-Translator: \n"
 "Language: en_GB\n"
 "Language-Team: \n"
@@ -26,6 +26,27 @@ msgstr "The selected file is not an epub"
 #: src/Controlador.py:68
 msgid "Diccionario creado con éxito"
 msgstr "Dictionary was successfully created"
+
+#: src/Modelo/Modelo.py:566
+msgid "Histograma de grado"
+msgstr "Degree histogram"
+
+#: src/Modelo/Modelo.py:567 src/Modelo/Modelo.py:591
+msgid "N nodos"
+msgstr "N nodes"
+
+#: src/Modelo/Modelo.py:568 src/templates/visinforme.html:65
+#: src/templates/visinforme.html:73
+msgid "Grado"
+msgstr "Degree"
+
+#: src/Modelo/Modelo.py:590
+msgid "Histograma de Interacciones"
+msgstr "Interactions histogram"
+
+#: src/Modelo/Modelo.py:592
+msgid "Interacciones"
+msgstr "Interactions"
 
 #: src/templates/delpers.html:2 src/templates/delrefpers.html:2
 #: src/templates/dictaut.html:2 src/templates/impdict.html:2
@@ -229,15 +250,15 @@ msgstr "Select file"
 msgid "Cargar"
 msgstr "Upload"
 
-#: src/templates/impdict.html:59
+#: src/templates/impdict.html:60
 msgid "Fichero introducido correctamente"
 msgstr "File was properly uploaded"
 
-#: src/templates/impdict.html:62 src/templates/index.html:56
+#: src/templates/impdict.html:63 src/templates/index.html:57
 msgid "Formato de archivo equivocado"
 msgstr "File format is wrong"
 
-#: src/templates/impdict.html:65 src/templates/index.html:59
+#: src/templates/impdict.html:66 src/templates/index.html:60
 msgid "Introduzca un archivo"
 msgstr "Enter a file"
 
@@ -275,19 +296,19 @@ msgstr "Degree metrics"
 
 #: src/templates/informe.html:56
 msgid "Obtener Grado Sin Peso"
-msgstr "Get Degree Without Weight"
+msgstr "Get Degree Unweighted"
 
 #: src/templates/informe.html:59
 msgid "Obtener Grado Con Peso"
-msgstr "Get Degree With Weight"
+msgstr "Get Degree Weighted"
 
 #: src/templates/informe.html:62
 msgid "Obtener Distribución Sin Peso"
-msgstr "Get Distribution Without Weight"
+msgstr "Get Distribution Unweighted"
 
 #: src/templates/informe.html:65
 msgid "Obtener Distribución Con Peso"
-msgstr "Get Distribution With Weight"
+msgstr "Get Distribution Weighted"
 
 #: src/templates/informe.html:68
 msgid "Obtener Densidad"
@@ -389,7 +410,7 @@ msgstr "Detect Roles"
 msgid "Por favor introduzca un valor"
 msgstr "Please introduce a value"
 
-#: src/templates/informe.html:149 src/templates/visinforme.html:244
+#: src/templates/informe.html:149 src/templates/visinforme.html:254
 msgid "K del K-clique de comunidades"
 msgstr "K for the K-clique communities"
 
@@ -502,11 +523,11 @@ msgstr "Enter an ID to substitute the current one"
 msgid "La nueva id introducida ya existe"
 msgstr "The new introduced ID already exists"
 
-#: src/templates/modidpers.html:115
+#: src/templates/modidpers.html:116
 msgid "Id modificada correctamente"
 msgstr "Id was properly changed"
 
-#: src/templates/modidpers.html:119
+#: src/templates/modidpers.html:120
 msgid "La id actual introducida no se corresponde con ningun personaje"
 msgstr "The introduced current id doesnt exist"
 
@@ -544,7 +565,7 @@ msgid ""
 "caracter:"
 msgstr "Please do not enter any of these characters as the first carácter:"
 
-#: src/templates/newpers.html:111
+#: src/templates/newpers.html:112
 msgid "Personaje introducido correctamente"
 msgstr "Character was properly introduced"
 
@@ -576,11 +597,11 @@ msgstr "Enter a reference"
 msgid "La referencia ya existe en el personaje"
 msgstr "Reference already exist in the character"
 
-#: src/templates/newrefpers.html:123
+#: src/templates/newrefpers.html:124
 msgid "Referencia añadida correctamente"
 msgstr "Reference was successfully added"
 
-#: src/templates/newrefpers.html:128
+#: src/templates/newrefpers.html:129
 msgid "No existe ningún personaje con la ID introducida"
 msgstr "There is no character with the introduced ID"
 
@@ -604,11 +625,11 @@ msgstr "Obtain"
 msgid "Introduzca una url"
 msgstr "Enter a url"
 
-#: src/templates/obtdict.html:60
+#: src/templates/obtdict.html:61
 msgid "Personajes que aparecen en la página introducidos"
 msgstr "The characters that appear in the introduced url were succesfully added"
 
-#: src/templates/obtdict.html:63
+#: src/templates/obtdict.html:64
 msgid "Introduzca una url perteneciente a *.fandom.com/wiki/Category:Characters"
 msgstr "Enter a url from *.fandom.com/wiki/Category:Characters"
 
@@ -702,133 +723,129 @@ msgstr "Number of Interactions"
 
 #: src/templates/visinforme.html:49
 msgid "Grado Nodos Sin Peso"
-msgstr "Nodes Degree Without Weight"
+msgstr "Nodes Degree Unweighted"
 
 #: src/templates/visinforme.html:56
 msgid "Grado Nodos Con Peso"
-msgstr "Nodes Degree With Weight"
+msgstr "Nodes Degree Weighted"
 
 #: src/templates/visinforme.html:63
 msgid "Distribución Grado Sin Peso"
-msgstr "Degree Distribution Without Weight"
+msgstr "Degree Distribution Unweighted"
 
-#: src/templates/visinforme.html:65 src/templates/visinforme.html:72
-msgid "Grado"
-msgstr "Degree"
-
-#: src/templates/visinforme.html:65 src/templates/visinforme.html:72
+#: src/templates/visinforme.html:65 src/templates/visinforme.html:73
 msgid "Num Nodos con este Grado"
 msgstr "Number of Nodes with this Degree"
 
-#: src/templates/visinforme.html:70
+#: src/templates/visinforme.html:71
 msgid "Distribución Grado Con Peso"
-msgstr "Degree Distribution With Weight"
+msgstr "Degree Distribution Weighted"
 
-#: src/templates/visinforme.html:77
+#: src/templates/visinforme.html:79
 msgid "Densidad"
 msgstr "Density"
 
-#: src/templates/visinforme.html:80
+#: src/templates/visinforme.html:82
 msgid "Componentes Conectados"
 msgstr "Connected Components"
 
-#: src/templates/visinforme.html:82
+#: src/templates/visinforme.html:84
 msgid "Componente"
 msgstr "Component"
 
-#: src/templates/visinforme.html:92
+#: src/templates/visinforme.html:94
 msgid "Excentricidad"
 msgstr "Eccentricity"
 
-#: src/templates/visinforme.html:99
+#: src/templates/visinforme.html:101
 msgid "Diametro"
 msgstr "Diameter"
 
-#: src/templates/visinforme.html:102
+#: src/templates/visinforme.html:104
 msgid "Radio"
 msgstr "Radius"
 
-#: src/templates/visinforme.html:105
+#: src/templates/visinforme.html:107
 msgid "Distancia Media"
 msgstr "Average Distance"
 
-#: src/templates/visinforme.html:108
+#: src/templates/visinforme.html:110
 msgid "Clustering Local"
 msgstr "Local Clustering"
 
-#: src/templates/visinforme.html:115
+#: src/templates/visinforme.html:117
 msgid "Clustering Global"
 msgstr "Global Clustering"
 
-#: src/templates/visinforme.html:118
+#: src/templates/visinforme.html:120
 msgid "Transitividad"
 msgstr "Transitivity"
 
-#: src/templates/visinforme.html:121
+#: src/templates/visinforme.html:123
 msgid "Centralidad Grado"
 msgstr "Degree Centrality"
 
-#: src/templates/visinforme.html:128
+#: src/templates/visinforme.html:131
 msgid "Centralidad Cercanía"
 msgstr "Closeness Centrality"
 
-#: src/templates/visinforme.html:135
+#: src/templates/visinforme.html:139
 msgid "Centralidad Intermediación"
 msgstr "Betweenness Centrality"
 
-#: src/templates/visinforme.html:142
+#: src/templates/visinforme.html:147
 msgid "Centralidad Intermediación Camino Aleatorio"
 msgstr "Random Path Betweenness Centrality"
 
-#: src/templates/visinforme.html:149
+#: src/templates/visinforme.html:155
 msgid "Centralidad Valor Propio"
 msgstr "Eigenvector Centrality"
 
-#: src/templates/visinforme.html:156
+#: src/templates/visinforme.html:163
 msgid "Pagerank"
 msgstr "Pagerank"
 
-#: src/templates/visinforme.html:163
+#: src/templates/visinforme.html:171
 msgid "Comunidades K-clique"
 msgstr "K-clique Communities"
 
-#: src/templates/visinforme.html:165 src/templates/visinforme.html:177
+#: src/templates/visinforme.html:173 src/templates/visinforme.html:186
 msgid "Comunidad"
 msgstr "Community"
 
-#: src/templates/visinforme.html:175
+#: src/templates/visinforme.html:184
 msgid "Comunidades Girvan-Newman"
 msgstr "Girvan-Newman Communities"
 
-#: src/templates/visinforme.html:187
+#: src/templates/visinforme.html:197
 msgid "Hubs Provinciales"
 msgstr "Provincial Hubs"
 
-#: src/templates/visinforme.html:193
+#: src/templates/visinforme.html:203
 msgid "Hubs Conectores"
 msgstr "Connector Hubs"
 
-#: src/templates/visinforme.html:199
+#: src/templates/visinforme.html:209
 msgid "Hubs Kinless"
 msgstr "Kinless Hubs"
 
-#: src/templates/visinforme.html:205
+#: src/templates/visinforme.html:215
 msgid "No Hubs Ultra Periféricos"
 msgstr "Ultra Peripheral Nodes"
 
-#: src/templates/visinforme.html:211
+#: src/templates/visinforme.html:221
 msgid "No Hubs Periféricos"
 msgstr "Peripheral Nodes"
 
-#: src/templates/visinforme.html:217
+#: src/templates/visinforme.html:227
 msgid "No Hubs Conectores"
 msgstr "Non Hub Connectors"
 
-#: src/templates/visinforme.html:223
+#: src/templates/visinforme.html:233
 msgid "No Hubs Kinless"
 msgstr "Non Hub Kinless Nodes"
 
-#: src/templates/visinforme.html:240
+#: src/templates/visinforme.html:250
 msgid "Por favor introduzca valor en:"
 msgstr "Please introduce a value in:"
 

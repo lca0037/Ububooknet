@@ -120,6 +120,7 @@
 				        	if(aux){
 				        		alert("{{ _('La referencia ya existe en el personaje') }}")
 				        	} else {
+				        		validNavigation = true;
 				        		alert("{{ _('Referencia añadida correctamente') }}")
 				        		document.getElementById("form-menu").submit();
 				        	}
