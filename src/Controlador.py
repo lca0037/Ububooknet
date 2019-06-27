@@ -52,6 +52,10 @@ def index():
             return render_template('index.html', error = error)
     return render_template('index.html')
 
+@app.route('/Acerca', methods=["GET","POST"])
+def about():
+    return render_template('about.html')
+
 @app.route('/Dicts-Automaticos/', methods=["GET", "POST"])
 def dictaut():
     msg = ''

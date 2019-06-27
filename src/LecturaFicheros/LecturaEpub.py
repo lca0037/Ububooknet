@@ -18,9 +18,6 @@ class LecturaEpub:
         self.__orden = list()
 #        print(self.epub.namelist())
     
-    '''
-    
-    '''
     def __obtenerOrdenLectura(self):
         """
         Obtiene el orden de lectura en el que se deben leer los ficheros de 
